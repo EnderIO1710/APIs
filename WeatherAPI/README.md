@@ -1,31 +1,27 @@
 Это простой пакет API погоды
 стэк: request, radis, ограничитель скорости
 
+Возвращает информацию о температуре в моем прекрасном городе: максимальная/минимальная/средняя/почасовая температура
+
 Процесс разработки:
 
-1. Создается само АПИ
+0. .env окружение
+1. Создается само АПИ:
 2. Навешиваем рэдис
 3. Ограничиваем скорость через рэдис
 4. Тесты
 
 key: FGYALYN7QTKBHNWV5VQF7XTTH
 
-import urllib.request
-import sys
 
-import json
+Запуск:
+
+1. git clone ...
+2. python -m venv venv
+3. .\venv\Scripts\activate  
+4. pip install -r .\WeatherAPI\requirements.txt
+5. python -m WeatherAPI - enter.
+
+P.S. Не злоупотребляйте запросами, я нарочно оставил APIkey сайта, чтобы те, кто будут смотреть могли что-то увидеть.
+
                 
-try: 
-  ResultBytes = urllib.request.urlopen("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Russian?unitGroup=us&key=FGYALYN7QTKBHNWV5VQF7XTTH&contentType=json")
-  
-  # Parse the results as JSON
-  jsonData = json.load(ResultBytes)
-        
-except urllib.error.HTTPError  as e:
-  ErrorInfo= e.read().decode() 
-  print('Error code: ', e.code, ErrorInfo)
-  sys.exit()
-except  urllib.error.URLError as e:
-  ErrorInfo= e.read().decode() 
-  print('Error code: ', e.code,ErrorInfo)
-  sys.exit()
